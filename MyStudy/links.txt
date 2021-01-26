@@ -1,0 +1,6 @@
+https://davedelong.com/blog/2018/12/15/silencing-specific-build-warnings/
+https://clang.llvm.org/docs/UsersManual.html#options-to-control-error-and-warning-messages
+https://clang.llvm.org/docs/DiagnosticsReference.html
+AppCode VMOption
+https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html
+https://www.jetbrains.com/help/objc/tuning-the-ide.html

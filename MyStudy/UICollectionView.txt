@@ -1,0 +1,49 @@
+UICollectionView
+dequeueReusableCellWithReuseIdentifier()
+will also restore the selection state
+UICollectionView *cv
+
+@protocol UICollectionViewDelegate <UIScrollViewDelegate>
+
+// Abbreviations
+ allowSelection
+multiSel = allowMultipleSelection
+~ = AtIndexPath
+... = codes others
+action: (nothing selected), line{selected set} = {cv.indexPathForSelectedItem}
+let p = indexPath, cv = UICollectionView
+'''
+bool hi = cv.shouldHighlight~(p) // ask
+if (hi) {
+    cv.setHighlight...
+    cv.didHighlight~(p)  // set
+    bool inSel = p is in selected set 
+    if (multiSel) {
+        if (inSel) {
+            bool des = cv.shouldDeselect~(p) // ask 
+            if (des) {
+                cv.removeIndex(p)...
+                cv.didDeselect~(p) // set clear p
+            }
+        } else {
+            bool sel = cv.shouldSelect~(p) // ask
+            if (sel) {
+                cv.addIndex(p)...
+                cv.didSelect~() // set
+            }
+        }
+    } else {
+        bool sel = cv.shouldSelect~(p) // ask
+        let old = cv.indexPathForSelectedItem?.get(0)
+        if (old != nil && sel) {
+            cv.didDeselect~(old) // set clear previous selection
+        }
+        if (sel) {
+            cv.addIndex()...
+            cv.didSelect~()
+        }
+    }
+}
+'''
+
+@end
